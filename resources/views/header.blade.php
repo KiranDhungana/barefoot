@@ -20,7 +20,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" aria-current="C" href="{{url('contact')}}">Contact us</a>
+          <a class="nav-link" aria-current="C" href="{{url('contact')}}">Contact Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="C" href="{{'about-us'}}">About us</a>
