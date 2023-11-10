@@ -147,6 +147,12 @@
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     {{ Session::get('notice_message') }}
 </div>  
+@else @if (Session::has('accountmessage'))
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ Session::get('accountmessage') }}
+</div>  
+@endif
 @endif
 @endif
 @endif
@@ -155,7 +161,12 @@
     
 @endif
 
-
+    <a href={{ route('manageaccounts') }}>
+        <button class="btnn"><i class="fa-solid fa-users"></i>ADD ACCOUNT</button>
+    </a>
+    <a href={{ route('editaccounts') }}>
+        <button class="btnn"><i class="fa-solid fa-users"></i>EDIT ACCOUNT</button>
+    </a>
 
     <a href={{ route('register_user') }}>
         <button class="btnn"><i class="fa-solid fa-user"></i> ADD PLAYERS</button>
@@ -166,6 +177,7 @@
     <a href={{ route('del_notice') }}>
         <button class="btnn"><i class="fa-solid fa-trash"></i> DELETE NOTICE</button>
     </a>
+ 
 
     <table class="table table table-bordered">
         <thead class="th">

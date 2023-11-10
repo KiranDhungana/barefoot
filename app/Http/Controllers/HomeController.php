@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use App\Models\User;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -215,7 +216,11 @@ class HomeController extends Controller
 
     }
 
-
+    public function manageaccounts()
+    {
+        // $data = file::all();
+        return view('accounts');
+    }
     public function del_notice()
     {
         $data = file::all();
@@ -229,6 +234,34 @@ class HomeController extends Controller
 
         return redirect('delete-notice')->with('delete_message', 'Notice deleted succesfully');
     }
+    public function addaccounts(Request $req)
+    {
+        $account = new Account;
+        $center = $req->input('dropdown');
+        $name = $req['name'];
+        $rank = $req['rank'];
+        $fee = $req['fee'];
+        $discount = $req['discount'];
+        $finalfee = $fee - (($discount / 100) * $fee);
 
+        $account->name = $name;
+        $account->center = $center;
+        $account->rank = $rank;
+        $account->fee = $finalfee;
+        $account->discount = $discount;
+        $account->save();
+        return redirect('/admin/home')->with('accountmessage', 'Student added succesfully');
+
+
+
+
+
+    }
+
+    public function editaccounts()
+    {
+        // $data = file::all();
+        return view('editaccount');
+    }
 
 }
