@@ -13,9 +13,9 @@
             <tr>
                 <th scope="col">S.NO</th>
                 <th scope="col">NAME</th>
-                <th scope="col">EMAIL</th>
-                <th scope="col">Address</th>
-                <th scope="col">PHONE-NO</th>
+                <th scope="col">Center</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Due Amount</th>
                 <th scope="col">ACTION</th>
             </tr>
         </thead>
