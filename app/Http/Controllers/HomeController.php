@@ -275,5 +275,44 @@ class HomeController extends Controller
         return redirect('/admin/home')->with('accountdeletedmsg', 'Student Deleted Successfully');
 
     }
+    public function accountview($id)
+    {
+
+        $accdata = Account::find($id);
+
+        return view('viewaccount')->with('accountdata', $accdata);
+
+    }
+    public function accountupdate($id)
+    {
+
+        $accdata = Account::find($id);
+
+        return view('editaccountform')->with('accountdata', $accdata);
+
+    }
+    public function accountupdateform(Request $req, $id)
+    {
+        $accdata = Account::find($id);
+        $name = $req['name'];
+        $rank = $req['rank'];
+        $paidamount = $req['paidamount'];
+        $date = $req['paiddate'];
+
+        $accdata->name = $name;
+        $accdata->rank = $rank;
+        $accdata->paid = $paidamount;
+
+        $accdata->fee = $accdata->fee - $paidamount;
+        $accdata->totalpaidamount = $accdata->totalpaidamount + $paidamount;
+
+        $accdata->paiddate = $date;
+        $accdata->save();
+        return redirect('/admin/home')->with('accountupdatedmsg', 'Students data updated succesfully');
+
+
+
+    }
+
 
 }

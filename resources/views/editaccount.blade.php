@@ -43,9 +43,13 @@
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
 
-                            <form action="/admin-update/{{ $item->id }}" method="get">
+                            <form action="/account-update/{{ $item->id }}" method="get">
 
                                 <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                              <form action="/account-view/{{ $item->id }}" method="get">
+
+                                <button type="submit" class="btn btn-primary">view</button>
                             </form>
                         </td>
                     </tr>
