@@ -25,7 +25,7 @@
         @endphp
 
 
-        {{-- @foreach ($data as $item)
+        @foreach ($accountdata as $item)
             @if ($item->name == 'admin')
                 @continue
             @else
@@ -33,11 +33,12 @@
                     <tr>
                         <th scope="row">{{ $i }}</th>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{ $item->address }}</td>
-                        <td>{{ $item->phone }}</td>
+                     
+                        <td>{{ $item->center }}</td>
+                        <td>{{ $item->rank }}</td>
+                        <td>{{ $item->fee }}</td>
                         <td class="action">
-                            <form action="/admin-del/{{ $item->id }}" method="post">
+                            <form action="/account-del/{{ $item->id }}" method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
@@ -53,7 +54,7 @@
             @php
                 $i = $i + 1;
             @endphp
-        @endforeach --}}
+        @endforeach
     </table>
 </body>
 </html>

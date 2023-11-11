@@ -38,6 +38,7 @@ Route::get('/manageaccounts', [App\Http\Controllers\HomeController::class, 'mana
 Route::POST('/delete-notice/{id}', [App\Http\Controllers\HomeController::class, 'delete_notice'])->name('delete.notice')->middleware('checkadmin');
 Route::POST('/manageaccounts', [App\Http\Controllers\HomeController::class, 'addaccounts'])->name('add.accounts')->middleware('checkadmin');
 Route::get('/editaccounts', [App\Http\Controllers\HomeController::class, 'editaccounts'])->name('editaccounts')->middleware('checkadmin');
+Route::POST('/account-del/{id}', [App\Http\Controllers\HomeController::class, 'accountdelete'])->name('account.destroy')->middleware('checkadmin');
 
 
 

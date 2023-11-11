@@ -258,10 +258,22 @@ class HomeController extends Controller
 
     }
 
+
+
     public function editaccounts()
     {
+        $data = account::all();
+        return view('editaccount')->with('accountdata', $data);
         // $data = file::all();
-        return view('editaccount');
+        // return view('editaccount');
+    }
+    public function accountdelete($id)
+    {
+
+        Account::find($id)->delete();
+
+        return redirect('/admin/home')->with('accountdeletedmsg', 'Student Deleted Successfully');
+
     }
 
 }

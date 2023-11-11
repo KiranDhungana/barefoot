@@ -152,6 +152,12 @@
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     {{ Session::get('accountmessage') }}
 </div>  
+@else @if (Session::has('accountdeletedmsg'))
+<div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    {{ Session::get('accountdeletedmsg') }}
+</div>  
+@endif
 @endif
 @endif
 @endif
