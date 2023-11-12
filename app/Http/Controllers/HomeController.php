@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Mail;
 use PhpParser\Node\Expr\AssignOp\Concat;
+use View;
 
 class HomeController extends Controller
 {
@@ -234,8 +235,20 @@ class HomeController extends Controller
 
         return redirect('delete-notice')->with('delete_message', 'Notice deleted succesfully');
     }
+
     public function addaccounts(Request $req)
     {
+        $loginid = random_int(100000, 999999);
+        $alph = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $code = '';
+
+        for ($i = 0; $i < 5; $i++) {
+            $code .= $alph[rand(0, 61)];
+        }
+        $password = Hash::make($code);
+
+
+
         $account = new Account;
         $center = $req->input('dropdown');
         $name = $req['name'];
@@ -245,12 +258,43 @@ class HomeController extends Controller
         $finalfee = $fee - (($discount / 100) * $fee);
 
         $account->name = $name;
+        $account->loginid = $loginid;
+        $account->password = $password;
+
         $account->center = $center;
         $account->rank = $rank;
         $account->fee = $finalfee;
         $account->discount = $discount;
+
+        $fromemail = "Barefootwebsite@gmail.com";
+        $fromname = $req['name'];
+        $subj = "User Account details";
+        // $message = $req['message'];
+        $toname = 'Barefoot';
+        $to_name = 'barefoot';
+        $to_email = 'barefootmartialarts@gmail.com';
+        // $data = array('name' => "Cloudways (sender_name)", "body" => 'A test mail');
+        $data = [
+            'UserName' => $name,
+            'Userloginid' => $loginid,
+            'Password' => $code,
+            'subj' => "User Account details",
+
+        ];
+
+
+
+        // $user['to'] = 'barefootmartialarts@gmail.com';
+        // $user['sub'] = $subj;
+        // $user['from'] = $email;
+        \Illuminate\Support\Facades\Mail::send('accountmail', $data, function ($message) use ($to_email, $toname, $fromemail, $fromname, $subj) {
+
+            $message->from($fromemail, $fromname);
+            $message->to($to_email, $toname);
+            $message->subject($subj);
+        });
         $account->save();
-        return redirect('/admin/home')->with('accountmessage', 'Student added succesfully');
+        return redirect('/admin/home')->with('accountmessage', 'Account  added succesfully');
 
 
 
@@ -313,6 +357,29 @@ class HomeController extends Controller
 
 
     }
+    public function viewcenter()
+    {
 
+        $account = Account::all();
+        $parasicollected = 0;
+        $dainahawacollected = 0;
+        foreach ($account as $item) {
+
+            if ($item['center'] == "Parasi") {
+                $parasicollected = $item['paid'] + $parasicollected;
+
+            } else if ($item['center'] == "Dainahawa") {
+                $dainahawacollected = $item['fee'] + $dainahawacollected;
+            } else if ($item['center'] == "Swathi") {
+                echo "Swati";
+            } else if ($item['center'] == "4") {
+                echo "4";
+            }
+
+        }
+        echo $parasicollected;
+
+
+    }
 
 }

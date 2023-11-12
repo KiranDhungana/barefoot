@@ -15,9 +15,10 @@
             <label for="exampleInputPassword1">Choose Center</label>
           <select name="dropdown" class="form-select" aria-label="Default select example">
             <option selected>Select here</option>
-            <option value="parasi">Parasi Branch </option>
-            <option value="swathi">Swathi Branch </option>
+            <option value="Parasi">Parasi Branch </option>
+            <option value="Swathi">Swathi Branch </option>
             <option value="Dainahawa">Dainahawa Branch</option>
+            <option value="4">Branch 4</option>
           </select>
         </div>
           <div style="margin-top:10px" class="form-group">
