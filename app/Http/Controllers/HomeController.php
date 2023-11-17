@@ -381,5 +381,35 @@ class HomeController extends Controller
 
 
     }
+    public function view_center()
+    {
+        $data = account::all();
+        $pi = 0;
+        $si = 0;
+        $di = 0;
+        $i = 0;
+        $pa = 0;
+        $sa = 0;
+        $da = 0;
+        $a = 0;
+        foreach ($data as $key) {
+            if ($key['center'] == "Swathi") {
+                $si = $si + 1;
+                $sa = $key['totalpaidamount'] + $sa;
+            } else if ($key['center'] == "Parasi") {
+                $pi = $pi + 1;
+                $pa = $key['totalpaidamount'] + $pa;
+
+            } else if ($key['center'] == "Dainahawa") {
+                $di = $di + 1;
+                $da = $key['totalpaidamount'] + $da;
+            } else {
+                $i = $i + 1;
+                $a = $key['totalpaidamount'] + $a;
+            }
+        }
+        dd($sa);
+        return view('center')->with('centerinfo', $data);
+    }
 
 }

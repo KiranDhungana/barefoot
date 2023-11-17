@@ -43,6 +43,7 @@ Route::get('/account-update/{id}', [App\Http\Controllers\HomeController::class, 
 Route::POST('/account-update/{id}', [App\Http\Controllers\HomeController::class, 'accountupdateform'])->name('account.update')->middleware('checkadmin');
 Route::get('/account-view/{id}', [App\Http\Controllers\HomeController::class, 'accountview'])->name('account.view')->middleware('checkadmin');
 Route::get('/view-center', [App\Http\Controllers\HomeController::class, 'viewcenter'])->name('viewcenter')->middleware('checkadmin');
+Route::get('/add-notice', [App\Http\Controllers\HomeController::class, 'view_center'])->name('view_center')->middleware('checkadmin');
 
 
 

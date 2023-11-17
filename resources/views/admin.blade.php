@@ -166,8 +166,11 @@
 
     
 @endif  
+    <a href={{ route('view_center') }}>
+        <button class="btnn"><i class="fa-solid fa-eye"></i> VIEW CENTER INFO </button>
+    </a>
 <a href={{ route('viewcenter') }}>
-    <button class="btnn"><i class="fa-solid fa-users"></i>CENTER INFO</button>
+    <button class="btnn"><i class="fa-solid fa-info"></i> CENTER INFO</button>
 </a>
     <a href={{ route('manageaccounts') }}>
         <button class="btnn"><i class="fa-solid fa-users"></i>ADD ACCOUNT</button>
