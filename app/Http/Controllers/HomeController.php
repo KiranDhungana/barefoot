@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use App\Models\User;
+use App\Models\Event;
 use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -380,6 +381,38 @@ class HomeController extends Controller
         echo $parasicollected;
 
 
+    }
+    public function add_event()
+    {
+        return view('addevents');
+    }
+
+    public function add_event_todb(Request $req)
+    {
+        $validated = $req->validate([
+            'title' => 'required',
+            'file' => 'required',
+
+        ]);
+        $title = $req['title'];
+        $desc = $req['des'];
+        $fileName = [];
+        foreach ($req->file('file') as $img) {
+            //get name of file
+            $fileName = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
+            //get extension of file
+            $extension = pathinfo($img->getClientOriginalName(), PATHINFO_EXTENSION);
+            //make new name
+            $fullFileName = $fileName . "-" . time() . "." . $img->getClientOriginalExtension();
+            // $imgname = $img->getClientOriginalName();
+            $img->storeAs('public/files', $fullFileName);
+            $fileNames[] = $fullFileName;
+        }
+
+        $uplo_file = json_encode($fileNames);
+        event::create(['path' => $uplo_file, 'title' => $title, 'description' => $desc,]);
+        dd("Added file");
+        return redirect('/admin/home')->with('event_message', 'Events added succesfully');
     }
     public function view_center()
     {

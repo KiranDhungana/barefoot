@@ -188,6 +188,9 @@
     <a href={{ route('del_notice') }}>
         <button class="btnn"><i class="fa-solid fa-trash"></i> DELETE NOTICE</button>
     </a>
+      <a href={{ route('add_event') }}>
+        <button class="btnn"><i class="fa-solid fa-plus"></i> ADD EVENTS</button>
+    </a>
  
 
     <table class="table table table-bordered">

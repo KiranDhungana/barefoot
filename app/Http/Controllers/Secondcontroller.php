@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\file;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Jorenvh\Share\ShareFacade as Share;
 
 class Secondcontroller extends Controller
 {
@@ -76,5 +78,35 @@ class Secondcontroller extends Controller
 
         return view('aboutus');
     }
+    public function events()
+    {
+        $events = event::orderBy('created_at', 'desc')->take(event::count())->get();
+        // $events = event::all();
+        // dd($notice);
+        return view('events')->with('events', $events);
+    }
+
+    public function events_main($id)
+    {
+        $event = event::find($id);
+        $url = url()->current();
+        $shareComponent = Share::page(
+
+            $url,
+            'Your share text comes here',
+        )
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()
+            ->reddit();
+
+        // return view('posts', compact('shareComponent'));
+        // dd($notice);
+        return view('eventsmainpage')->with(compact('shareComponent'))->with('event', $event);
+    }
+
+
 
 }

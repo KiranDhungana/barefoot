@@ -18,6 +18,9 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="C" href="{{url('notice-home')}}">Latest Notice</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="C" href="{{url('events')}}">Events</a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link" aria-current="C" href="{{url('contact')}}">Contact Us</a>

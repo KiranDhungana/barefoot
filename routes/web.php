@@ -44,6 +44,8 @@ Route::POST('/account-update/{id}', [App\Http\Controllers\HomeController::class,
 Route::get('/account-view/{id}', [App\Http\Controllers\HomeController::class, 'accountview'])->name('account.view')->middleware('checkadmin');
 Route::get('/view-center', [App\Http\Controllers\HomeController::class, 'viewcenter'])->name('viewcenter')->middleware('checkadmin');
 Route::get('/add-notice', [App\Http\Controllers\HomeController::class, 'view_center'])->name('view_center')->middleware('checkadmin');
+Route::get('/add-events', [App\Http\Controllers\HomeController::class, 'add_event'])->name('add_event')->middleware('checkadmin');
+Route::post('/add-events', [App\Http\Controllers\HomeController::class, 'add_event_todb'])->name('add_event_todb')->middleware('checkadmin');
 
 
 
@@ -51,9 +53,13 @@ Route::get('/add-notice', [App\Http\Controllers\HomeController::class, 'view_cen
 Route::get('/contact', [App\Http\Controllers\Secondcontroller::class, 'contactus'])->name('contact');
 Route::POST('/contact', [App\Http\Controllers\Secondcontroller::class, 'mailsend'])->name('send_mail');
 Route::get('/notice-home', [App\Http\Controllers\SecondController::class, 'notice_home'])->name('notice_home');
+Route::get('/events', [App\Http\Controllers\SecondController::class, 'events'])->name('events');
 Route::get('/notice-home/{id}', [App\Http\Controllers\SecondController::class, 'notice_main'])->name('notice_main');
 Route::get('/about-us', [App\Http\Controllers\SecondController::class, 'aboutus'])->name('about');
 Route::get('/gallary', function () {
 
     return view('galary');
 });
+Route::get('/social-media-share', [App\Http\Controllers\SocialShareButtonsController::class, 'ShareWidget']);
+
+Route::get('/events-home/{id}', [App\Http\Controllers\Secondcontroller::class, 'events_main'])->name('events_main');
