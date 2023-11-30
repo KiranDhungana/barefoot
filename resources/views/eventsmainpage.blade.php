@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Barefoot</title>
     <style>
+        #social-links ul{
+            list-style: none;
+            display: flex; 
+            gap: 15px;
+            padding-left: 16px;
+
+        }
+         #social-links {
+padding-left: 0px
+;
+margin-top: 4px;
+        }
         .dropdown-menu > li > a:hover {
     background-image: none;
 }
@@ -95,17 +107,7 @@ a:hover{
     @endphp
   
   <div style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; margin-top:10px" class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 style="display:inline;color:#6052ED">TITLE :</h2>
-        <h4 style="display:inline">
-          {{
-            $event->title
-                    }}
-        </h4>
-       
-      </div>
-    </div>
+  
     <div class="row">
       <div class="col-md-12">
         <h2 style="display:inline;color:#6052ED">DESCRIPTION :</h2>
@@ -133,14 +135,17 @@ a:hover{
        
         </h4>
       </div>
-    </div>
+      Share !
+         <div style="display: flex; text-decoration:none;" class="row">
 
-
-    <div class="container mt-4">
-        <h2 class="mb-5 text-center">Laravel Social Share Buttons Example</h2>
         {!! $shareComponent !!}
     </div>
+    </div>
+   
 
+
+
+  
     
 
 
